@@ -1,0 +1,67 @@
+---
+import { Image, type ImageMetadata } from "astro:assets";
+
+interface Button {
+  label: string;
+  href: string;
+}
+
+interface props {
+  title: string;
+  description?: string;
+  image: ImageMetadata;
+  button?: Button[];
+}
+
+const { title, description, image, button } = Astro.props;
+---
+
+<section class="w-full bg-black text-white">
+  <div
+    class="container mx-auto
+    min-h-[80vh]
+    px-6 py-20
+    grid gap-16
+    lg:grid-cols-2
+    items-center"
+  >
+    <!-- Left Content -->
+    <div class="max-w-xl">
+      <h1 class="text4-xl md:text-5xl lg:text-6xl font-bold leading-tight">
+        {title}
+      </h1>
+
+      {
+        description && (
+          <p class="mt-6 text-white/80 leading-relaxed text-base md:text-lg">
+            {description}
+          </p>
+        )
+      }
+
+      {
+        button && (
+          <a
+            href={button.href}
+            class="inline-flex mt-10 px-6 py-3 border border-white rounded-lg text-sm font-medium hover:bg-white hover:text-black transition"
+          >
+            {button.label}
+          </a>
+        )
+      }
+    </div>
+
+    <!-- Right Content -->
+    <div class="relative w-full">
+      <div class="aspect-square lg:aspect-[4/3] overflow-hidden rounded-2xl">
+        <Image
+          src={image}
+          alt={title}
+          priority
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+  </div>
+</section>

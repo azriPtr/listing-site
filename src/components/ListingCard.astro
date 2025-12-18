@@ -1,0 +1,32 @@
+---
+import type { ImageMetadata } from "astro";
+
+interface props {
+  title: string;
+  location: string;
+  image: ImageMetadata;
+}
+
+const { title, location, image } = Astro.props;
+---
+
+<article class="card shadow-lg rounded-xl overflow-hidden flex flex-col">
+  <div class="aspect-[4/3] w-full overflow-hidden bg-gray-100">
+    <picture>
+      <img
+        src={image.src}
+        alt={title}
+        widths={[400, 800]}
+        sizes="(max-width: px768) 100vw, 33vw"
+        loading="lazy"
+        placeholder="blur"
+        class="w-full h-full object-cover transition-opactity duration-300"
+      />
+    </picture>
+  </div>
+
+  <div class="p-4 flex flex-col justify-center items-center text-center flex-1">
+    <h2 class="font-semibold text-lg">{title}</h2>
+    <p class="text-sm text-gray-500">{location}</p>
+  </div>
+</article>

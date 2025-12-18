@@ -1,0 +1,42 @@
+---
+import NavLink from "./NavLink.astro";
+
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "Listings", href: "/listing" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+---
+
+<header class="fixed inset-x-0 z-50 backdrop-blur bg-black/40">
+  <div class="container mx-auto flex items-center justify-between h-16 px-6">
+    <!-- Logo -->
+    <a href="/" class="text-white text-lg font-bold">ListingSite</a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-8">
+      {navItems.map((item) => <NavLink {...item} />)}
+    </nav>
+
+    <!-- CTA -->
+    <a
+      href="/contact"
+      class="hidden md:inline-flex px-4 py-2 rounded-xl bg-white text-black text-sm font-semibold hover:bg-white/90 transition"
+      >Contact</a
+    >
+
+    <!-- Mobile Navigation -->
+    <details class="md:hidden relative">
+      <summary class="list-none text-white cursor-pointer">☰</summary>
+
+      <div
+        class="absolute right-0 w-full mt-4 w-48 bg-black/80 backdrop-blur-sm p-4"
+      >
+        <nav class="flex flex-col gap-4">
+          {navItems.map((item) => <NavLink {...item} />)}
+        </nav>
+      </div>
+    </details>
+  </div>
+</header>

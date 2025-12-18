@@ -1,0 +1,19 @@
+---
+interface Props {
+  href: string;
+  label: string;
+}
+
+const { href, label } = Astro.props as Props;
+const isActive = Astro.url.pathname === href;
+---
+
+<a
+  href={href}
+  aria-current={isActive ? "page" : undefined}
+  class={`relative text-sm font-medium transition ${
+    isActive
+      ? "text-white after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-white"
+      : "text-white/80 hover:text-white"
+  }`}>{label}</a
+>

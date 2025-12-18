@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../Layouts/BaseLayout.astro";
+import ListingCard from "../../components/ListingCard.astro";
+
+const listings = await getCollection("listings");
+---
+
+<BaseLayout title="Listings">
+  <main class="grid grid-cols-1 md:grid-cols-3 gap-8 p-8">
+    {
+      listings.map((item) => (
+        <ListingCard
+          title={item.data.title}
+          location={item.data.location}
+          image={item.data.image}
+        />
+      ))
+    }
+  </main>
+</BaseLayout>

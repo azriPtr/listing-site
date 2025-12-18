@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../Layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import HeroSection from "../components/HeroSection.astro";
+import homeHero from "../assets/hero/home-hero.jpg";
+---
+
+<BaseLayout title="Home" description="Welcome to the best listing site">
+  <HeroSection
+    title="Discover Amazing Places"
+    description="Find the best listings tailored just for you."
+    image={homeHero}
+    buttons={[{ label: "Get Started", href: "/listings" }]}
+  />
+</BaseLayout>
